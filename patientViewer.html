@@ -83,6 +83,7 @@
 	</div>
 
 		<script>
+		host=window.location.origin
             function showCreate(){
 				document.getElementById('showCreateButton').style.display="none"
 				document.getElementById('patientTable').style.display="none"
@@ -235,7 +236,7 @@
 					
 			function getAllAjax(){
 				$.ajax({
-					"url":"http://127.0.0.1:5000/patients",
+					"url": host+"/patients",
 					"method":"GET",
 					"data":"",
 					"dataType": "JSON",
@@ -254,7 +255,7 @@
 			function createPatientAjax(patient){
 				console.log(JSON.stringify(patient));
 				$.ajax({
-					"url": "http://127.0.0.1:5000/patients",
+					"url": host+"/patients",
 					"method":"POST",
 					"data":JSON.stringify(patient),
 					"dataType": "JSON", 
@@ -274,7 +275,7 @@
 			function updatePatientAjax(patient){
 				console.log("In updatePAtientAjax:Patient:", JSON.stringify(patient));
 				$.ajax({
-					"url": "http://127.0.0.1:5000/patients/"+encodeURI(patient.id),
+					"url": host+"/patients/"+encodeURI(patient.id),
 					"method":"PUT",
 					"data":JSON.stringify(patient),
 					"dataType": "JSON",
@@ -290,10 +291,9 @@
 			}
  
 			function deletePatientAjax(id){
-				console.log(JSON.stringify('deleting ' +id));
-				console.log(JSON.stringify('patient.id:', +encodeURI(patient.id)));
+				//console.log(JSON.stringify('deleting ' +id));
 				$.ajax({
-					"url": "http://127.0.0.1:5000/patients/"+encodeURI(id),
+					"url": host+"/patients/"+encodeURI(id),
 					"method":"DELETE",
 					"data":"",
 					"dataType": "JSON",
